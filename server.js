@@ -7,7 +7,7 @@ const session = require('express-session');
 const cors = require('cors');
 const nodemailer = require("nodemailer");
 
-const Contact = require('./models/Contact');
+const Contact = require('./models/contact');;
 const Order = require('./models/order');
 const Item = require('./models/item');
 const Cart = require('./models/cart');
