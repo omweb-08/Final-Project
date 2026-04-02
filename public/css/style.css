@@ -1,0 +1,55 @@
+/* style.css - FabriTech */
+:root{
+  --accent: #0b66c3;
+  --dark: #0b1724;
+  --muted: #6b7280;
+  --bg: #f5f7fb;
+  --card: #ffffff;
+  --radius: 12px;
+  --maxw: 1100px;
+  font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--dark);line-height:1.5}
+a{color:var(--accent);text-decoration:none}
+.container{max-width:var(--maxw);margin:0 auto;padding:18px}
+.header{
+  background:#fff;border-bottom:1px solid #e6eef7;position:sticky;top:0;z-index:50;
+}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 18px}
+.brand{display:flex;gap:12px;align-items:center}
+.logo{
+  width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#045a9a);
+  color:white;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:18px;
+}
+.brand h1{font-size:18px;margin:0}
+.top-contact{font-size:14px;color:var(--muted)}
+.nav{display:flex;gap:18px;align-items:center}
+.nav a{font-weight:600;color:var(--muted)}
+.nav a:hover{color:var(--accent)}
+.hero{display:grid;grid-template-columns:1fr 380px;gap:28px;align-items:center;padding:34px 18px}
+.kicker{display:inline-block;background:rgba(11,102,195,0.08);color:var(--accent);padding:6px 10px;border-radius:999px;font-weight:700;margin-bottom:10px}
+.hero h2{font-size:28px;margin:6px 0}
+.lead{color:var(--muted)}
+.btn{display:inline-block;padding:10px 14px;border-radius:10px;font-weight:700}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-light{background:transparent;border:1px solid rgba(11,102,195,0.12);color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:18px}
+.card{background:var(--card);padding:16px;border-radius:12px;box-shadow:0 8px 20px rgba(11,22,40,0.04)}
+.card h4{margin:6px 0}
+.section{padding:28px 18px}
+.section h3{margin:0 0 8px}
+.contact-grid{display:grid;grid-template-columns:1fr 420px;gap:24px}
+.form-card{background:var(--card);padding:16px;border-radius:12px;box-shadow:0 8px 20px rgba(11,22,40,0.04)}
+.field{display:flex;flex-direction:column;margin-bottom:12px}
+input,textarea{padding:10px;border-radius:8px;border:1px solid #e6e9ef;font-size:14px}
+textarea{min-height:120px;resize:vertical}
+.footer{background:#0b1724;color:#e6eef9;padding:22px;border-radius:6px;margin-top:24px}
+.footer .row{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.float-contact{position:fixed;right:18px;bottom:18px;background:var(--accent);color:#fff;padding:12px;border-radius:999px;box-shadow:0 8px 24px rgba(11,22,40,0.12);z-index:60}
+@media (max-width:920px){
+  .hero{grid-template-columns:1fr;padding:20px}
+  .contact-grid{grid-template-columns:1fr}
+  .nav{display:none}
+  .header-inner{padding:12px}
+}
