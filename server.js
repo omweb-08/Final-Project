@@ -11,7 +11,7 @@ const nodemailer = require("nodemailer");
 const Contact = require('./models/contact');
 const Order = require('./models/order');
 const Item = require('./models/item');
-const Cart = require('./models/cart');
+const Cart = require('./models/Cart');
 
 const app = express();
 const PORT = process.env.PORT || 5018;
