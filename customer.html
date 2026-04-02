@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<title>Customer Replies — FabriTech</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+body{
+font-family:'Inter',sans-serif;
+}
+
+.login-bg{
+background:linear-gradient(135deg,#020617,#1e3a8a,#020617);
+}
+
+.card-glass{
+background:rgba(255,255,255,0.95);
+backdrop-filter:blur(10px);
+}
+
+</style>
+
+</head>
+
+<body class="login-bg min-h-screen flex items-center justify-center px-4">
+
+
+<div class="card-glass p-10 rounded-[2.5rem] shadow-2xl max-w-lg w-full">
+
+<!-- LOGO -->
+
+<div class="flex justify-center mb-4">
+<img src="/images/logo1.png" style="height:50px;border-radius:50%;" alt="FabriTech Logo">
+</div>
+
+<h2 class="text-3xl font-extrabold text-center mb-2 text-slate-900">
+Customer Portal
+</h2>
+
+<p class="text-center text-slate-500 mb-8">
+Check reply from FabriTech admin
+</p>
+
+
+<!-- INPUT -->
+
+<div class="relative mb-5">
+
+<i class="fa-solid fa-envelope absolute left-4 top-4 text-slate-400"></i>
+
+<input id="lookup"
+type="text"
+placeholder="Enter Email or Phone"
+
+class="w-full pl-12 pr-4 py-4 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 outline-none">
+
+</div>
+
+
+<!-- BUTTON -->
+
+<button onclick="checkReply()"
+
+class="w-full bg-blue-600 text-white font-bold py-4 rounded-xl shadow-xl hover:bg-blue-700 transition-all hover:scale-[1.02]">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+Check Reply
+
+</button>
+
+
+<!-- RESULT -->
+
+<div id="result" class="mt-6 hidden"></div>
+
+</div>
+
+
+
+<script>
+
+async function checkReply(){
+
+const key=document.getElementById('lookup').value.trim();
+
+const result=document.getElementById('result');
+
+result.classList.add('hidden');
+
+result.innerHTML="";
+
+
+if(!key){
+
+result.className="mt-6 text-red-600 font-bold text-center";
+
+result.innerText="Please enter your email or phone.";
+
+result.classList.remove('hidden');
+
+return;
+
+}
+
+
+try{
+
+const response=await fetch('/api/contact');
+
+const data=await response.json();
+
+console.log("Server data:",data);
+
+
+const inquiry=data.find(i=>
+
+(i.email && i.email.toLowerCase()===key.toLowerCase()) ||
+
+(i.phone && i.phone.replace(/\D/g,'')===key.replace(/\D/g,''))
+
+);
+
+
+if(!inquiry){
+
+result.className="mt-6 text-red-600 font-bold text-center";
+
+result.innerText="No inquiry found with this email or phone.";
+
+result.classList.remove('hidden');
+
+return;
+
+}
+
+
+if(!inquiry.reply){
+
+result.className="mt-6 bg-amber-50 border border-amber-200 p-5 rounded-xl text-amber-700";
+
+result.innerHTML=`
+
+<strong>Status:</strong> Waiting for Admin Reply<br>
+
+<strong>Submitted On:</strong> ${new Date(inquiry.createdAt).toLocaleString()}<br><br>
+
+<strong>Your Message:</strong><br>
+
+${inquiry.message}
+
+`;
+
+result.classList.remove('hidden');
+
+return;
+
+}
+
+
+result.className="mt-6 bg-green-50 border border-green-200 p-5 rounded-xl text-green-800";
+
+result.innerHTML=`
+
+<strong>Status:</strong> Replied ✅<br>
+
+<strong>Submitted On:</strong> ${new Date(inquiry.createdAt).toLocaleString()}<br><br>
+
+<strong>Your Message:</strong><br>
+
+${inquiry.message}<br><br>
+
+<strong>Admin Reply:</strong><br>
+
+${inquiry.reply}
+
+`;
+
+result.classList.remove('hidden');
+
+}
+
+catch(err){
+
+console.error(err);
+
+result.className="mt-6 text-red-600 font-bold text-center";
+
+result.innerText="Error fetching inquiry. Please try again later.";
+
+result.classList.remove('hidden');
+
+}
+
+}
+
+</script>
+
+</body>
+</html>

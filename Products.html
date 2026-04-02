@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>FabriTech Products</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script src="/js/main.js"></script>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+body{
+font-family:'Inter',sans-serif;
+scroll-behavior:smooth;
+background:#f8fafc;
+}
+
+.glass-nav{
+background:rgba(255,255,255,0.96);
+backdrop-filter:blur(12px);
+}
+
+.product-card{
+transition:all .35s ease;
+border-radius:1.8rem;
+overflow:hidden;
+}
+
+.product-card:hover{
+transform:translateY(-10px);
+box-shadow:0 25px 45px rgba(0,0,0,.18);
+}
+
+.product-img{
+transition:transform .4s ease;
+}
+
+.product-card:hover .product-img{
+transform:scale(1.08);
+}
+
+header{
+transition: transform 0.3s ease;
+transform: translateY(0);
+}
+
+header.hide-nav{
+transform: translateY(-100%);
+}
+
+</style>
+
+</head>
+
+
+
+<body class="text-slate-900 flex flex-col min-h-screen">
+
+
+
+<!-- NAVIGATION -->
+
+<header class="glass-nav border-b border-slate-200 fixed top-0 w-full z-50">
+
+<div class="container mx-auto px-4 py-3 flex items-center justify-between">
+
+
+<div class="flex items-center gap-4">
+
+<a href="index.html" class="flex items-center gap-3">
+
+<img src="/images/logo1.png"
+style="height:40px;border-radius:50%;"
+alt="logo">
+
+<h1 class="text-xl font-bold tracking-tight text-slate-900">
+FabriTech
+</h1>
+
+</a>
+
+
+<div class="relative w-56 hidden md:block">
+
+<input
+type="text"
+id="searchInput"
+placeholder="Search..."
+class="border px-3 py-2 rounded w-full text-sm">
+
+</div>
+
+</div>
+
+
+
+<nav class="hidden md:flex items-center gap-8 font-semibold text-sm">
+
+<a href="index.html" class="text-slate-600 hover:text-blue-600">Home</a>
+
+<a href="services.html" class="text-slate-600 hover:text-blue-600">Services</a>
+
+<a href="Products.html" class="text-blue-600 underline underline-offset-8">Products</a>
+
+<a href="cart.html"
+id="cart-icon"
+class="text-slate-600 hover:text-blue-600">
+
+🛒 Cart (<span id="cart-count">0</span>)
+
+
+<a href="about.html" class="text-slate-600 hover:text-blue-600">About</a>
+
+<a href="contact.html" class="text-slate-600 hover:text-blue-600">Contact</a>
+
+<a href="admin.html" class="text-slate-600 hover:text-blue-600">Admin</a>
+
+<a href="customer.html" class="text-slate-600 hover:text-blue-600">Customer</a>
+
+
+
+
+</nav>
+
+
+<div class="md:hidden">
+<i class="fa-solid fa-bars text-xl"></i>
+</div>
+
+</div>
+
+</header>
+
+
+
+<!-- HERO -->
+
+<section class="relative bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-20 pt-24 overflow-hidden">
+
+<!-- glow background -->
+<div class="absolute -top-24 -left-24 w-[420px] h-[420px] bg-blue-400 opacity-20 blur-[120px] rounded-full"></div>
+<div class="absolute -bottom-24 -right-24 w-[420px] h-[420px] bg-indigo-400 opacity-20 blur-[120px] rounded-full"></div>
+
+<div class="container mx-auto px-4 text-center relative z-10">
+
+<h2 class="text-4xl md:text-5xl font-extrabold mb-4 sparkle">
+Our Featured Products ✦
+</h2>
+
+<p class="max-w-2xl mx-auto text-blue-100 text-lg leading-relaxed">
+
+Explore our <span class="font-semibold text-white">high-quality fabrication items</span> 
+including gates, shutters, grills, and custom metal furniture designed 
+for durability and safety.
+
+</p>
+
+</div>
+
+</section>
+
+<style>
+
+/* SPARKLE HEADING */
+
+.sparkle{
+background:linear-gradient(90deg,#93c5fd,#ffffff,#60a5fa);
+background-size:200%;
+background-clip:text;
+-webkit-background-clip:text;
+color:transparent;
+-webkit-text-fill-color:transparent;
+animation:shine 5s linear infinite;
+}
+
+@keyframes shine{
+0%{background-position:0%}
+100%{background-position:200%}
+}
+
+</style>
+
+<!-- MAIN -->
+
+<main class="container mx-auto px-4 py-16 flex-grow">
+
+<h1 class="text-3xl font-bold mb-10 text-center">
+Our Featured Products
+</h1>
+
+
+
+<div id="product-list"
+class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
+
+
+
+<!-- PRODUCT 1 -->
+
+<div class="bg-white p-5 shadow-xl product-card">
+
+<img src="/images/gate.png"
+class="product-image rounded-3xl w-full object-cover h-[350px] product-img">
+
+<h3 class="text-lg font-bold mt-4">
+Steel Gate
+</h3>
+
+<p class="text-gray-600 text-sm">
+High-Quality Steel Gates – Durable, Secure & Custom Built
+</p>
+
+<button
+onclick="flyToCart(event,'Steel Gate')"
+
+class="bg-blue-600 text-white px-4 py-3 rounded-xl mt-4 w-full hover:bg-blue-700 transition font-semibold">
+
+<i class="fa-solid fa-cart-plus"></i>
+Add to Cart
+
+</button>
+
+</div>
+
+<!-- PRODUCT 2 -->
+
+<div class="bg-white p-5 shadow-xl product-card">
+
+<img src="/images/tale1.png"
+class="product-image rounded-3xl w-full object-cover h-[350px] product-img">
+
+<h3 class="text-lg font-bold mt-4">
+Metal Table
+</h3>
+
+<p class="text-gray-600 text-sm">
+High-Quality Metal Tables – Strong, Stylish & Long-Lasting
+</p>
+
+<button
+onclick="flyToCart(event,'Metal Table')"
+
+class="bg-blue-600 text-white px-4 py-3 rounded-xl mt-4 w-full hover:bg-blue-700 transition font-semibold">
+
+<i class="fa-solid fa-cart-plus"></i>
+Add to Cart
+
+</button>
+
+</div>
+
+
+<!-- PRODUCT 3 -->
+
+<div class="bg-white p-5 shadow-xl product-card">
+
+<img src="/images/roll.png"
+class="product-image rounded-3xl w-full object-cover h-[350px] product-img">
+
+<h3 class="text-lg font-bold mt-4">
+Rolling Shutter
+</h3>
+
+<p class="text-gray-600 text-sm">
+Premium Motorized Shop Shutters – Smart Security with Smooth Control
+</p>
+
+<button
+onclick="flyToCart(event,'Rolling Shutter')"
+
+class="bg-blue-600 text-white px-4 py-3 rounded-xl mt-4 w-full hover:bg-blue-700 transition font-semibold">
+
+<i class="fa-solid fa-cart-plus"></i>
+Add to Cart
+
+</button>
+
+</div>
+
+
+
+<!-- PRODUCT 4 -->
+
+<div class="bg-white p-5 shadow-xl product-card">
+
+<img src="/images/grill.png"
+class="product-image rounded-3xl w-full object-cover h-[350px] product-img">
+
+<h3 class="text-lg font-bold mt-4">
+Window Grill
+</h3>
+
+<p class="text-gray-600 text-sm">
+High-Quality Window Grills – Built for Security & Durability
+</p>
+
+<button
+onclick="flyToCart(event,'Window Grill')"
+
+class="bg-blue-600 text-white px-4 py-3 rounded-xl mt-4 w-full hover:bg-blue-700 transition font-semibold">
+
+<i class="fa-solid fa-cart-plus"></i>
+Add to Cart
+
+</button>
+
+</div>
+
+
+<!-- PRODUCT 5 -->
+
+<div class="bg-white p-5 shadow-xl product-card">
+
+<img src="/images/guide.png"
+class="product-image rounded-3xl w-full object-cover h-[350px] product-img">
+
+<h3 class="text-lg font-bold mt-4">
+Guide
+</h3>
+
+<p class="text-gray-600 text-sm">
+Heavy-Duty Guide with Custom Size Options</p>
+
+<button
+onclick="flyToCart(event,'Guide')"
+
+class="bg-blue-600 text-white px-4 py-3 rounded-xl mt-4 w-full hover:bg-blue-700 transition font-semibold">
+
+<i class="fa-solid fa-cart-plus"></i>
+Add to Cart
+
+</button>
+
+</div>
+
+<!-- PRODUCT 6 -->
+
+<div class="bg-white p-5 shadow-xl product-card">
+
+<img src="/images/bracket.png"
+class="product-image rounded-3xl w-full object-cover h-[350px] product-img">
+
+<h3 class="text-lg font-bold mt-4">
+Bracket
+</h3>
+
+<p class="text-gray-600 text-sm">
+Durable Custom Brackets – Engineered for Maximum Support
+</p>
+
+<button
+onclick="flyToCart(event,'Bracket')"
+
+class="bg-blue-600 text-white px-4 py-3 rounded-xl mt-4 w-full hover:bg-blue-700 transition font-semibold">
+
+<i class="fa-solid fa-cart-plus"></i>
+Add to Cart
+
+</button>
+
+</div>
+
+<!-- PRODUCT 7 -->
+
+<div class="bg-white p-5 shadow-xl product-card">
+
+<img src="/images/grillShutter.png"
+class="product-image rounded-3xl w-full object-cover h-[350px] product-img">
+
+<h3 class="text-lg font-bold mt-4">
+Grill Shutter
+</h3>
+
+<p class="text-gray-600 text-sm">
+High-Quality Grill Shutters – Built for Security & Durability
+</p>
+
+<button
+onclick="flyToCart(event,'Grill Shutter')"
+
+class="bg-blue-600 text-white px-4 py-3 rounded-xl mt-4 w-full hover:bg-blue-700 transition font-semibold">
+
+<i class="fa-solid fa-cart-plus"></i>
+Add to Cart
+
+</button>
+
+</div>
+
+<!-- PRODUCT 8 -->
+
+<div class="bg-white p-5 shadow-xl product-card">
+
+<img src="/images/shutter slate type.png"
+class="product-image rounded-3xl w-full object-cover h-[350px] product-img">
+
+<h3 class="text-lg font-bold mt-4">
+Slate's
+</h3>
+
+<p class="text-gray-600 text-sm">
+Premium Quality Slats Designed for Strength & Style
+</p>
+
+<button
+onclick="flyToCart(event,'Slates')"
+
+class="bg-blue-600 text-white px-4 py-3 rounded-xl mt-4 w-full hover:bg-blue-700 transition font-semibold">
+
+<i class="fa-solid fa-cart-plus"></i>
+Add to Cart
+
+</button>
+
+</div>
+
+
+<!-- PRODUCT 9 -->
+
+<div class="bg-white p-5 shadow-xl product-card">
+
+<img src="/images/spring.png"
+class="product-image rounded-3xl w-full object-cover h-[350px] product-img">
+
+<h3 class="text-lg font-bold mt-4">
+Spring's
+</h3>
+
+<p class="text-gray-600 text-sm">
+Premium Quality Spring's Designed for Strength & Durability
+</p>
+
+<button
+onclick="flyToCart(event,'Springs')"
+
+class="bg-blue-600 text-white px-4 py-3 rounded-xl mt-4 w-full hover:bg-blue-700 transition font-semibold">
+
+<i class="fa-solid fa-cart-plus"></i>
+Add to Cart
+
+</button>
+
+</div>
+
+<!-- PRODUCT 10 -->
+
+<div class="bg-white p-5 shadow-xl product-card">
+
+<img src="/images/lock.png"
+class="product-image rounded-3xl w-full object-cover h-[350px] product-img">
+
+<h3 class="text-lg font-bold mt-4">
+Shutter Lock's
+</h3>
+
+<p class="text-gray-600 text-sm">
+Premium Quality Shutter Lock's Designed for Strength & Durability
+</p>
+
+<button
+onclick="flyToCart(event,'Shutter Locks')"
+
+class="bg-blue-600 text-white px-4 py-3 rounded-xl mt-4 w-full hover:bg-blue-700 transition font-semibold">
+
+<i class="fa-solid fa-cart-plus"></i>
+Add to Cart
+
+</button>
+
+</div>
+
+
+<!-- PRODUCT 11 -->
+
+<div class="bg-white p-5 shadow-xl product-card">
+
+<img src="/images/garebox.png"
+class="product-image rounded-3xl w-full object-cover h-[350px] product-img">
+
+<h3 class="text-lg font-bold mt-4">
+Gare Box
+</h3>
+
+<p class="text-gray-600 text-sm">
+Premium Quality Gare Boxes Designed for Strength & Durability
+</p>
+
+<button
+onclick="flyToCart(event,'Gare Boxes')"
+
+class="bg-blue-600 text-white px-4 py-3 rounded-xl mt-4 w-full hover:bg-blue-700 transition font-semibold">
+
+<i class="fa-solid fa-cart-plus"></i>
+Add to Cart
+
+</button>
+
+</div>
+<!-- PRODUCT 12 -->
+
+<div class="bg-white p-5 shadow-xl product-card">
+
+<img src="/images/cap.png"
+class="product-image rounded-3xl w-full object-cover h-[350px] product-img">
+
+<h3 class="text-lg font-bold mt-4">
+Cap
+</h3>
+
+<p class="text-gray-600 text-sm">
+Premium Quality Caps Designed for Strength & Durability
+</p>
+
+<button
+onclick="flyToCart(event,'Caps')"
+
+class="bg-blue-600 text-white px-4 py-3 rounded-xl mt-4 w-full hover:bg-blue-700 transition font-semibold">
+
+<i class="fa-solid fa-cart-plus"></i>
+Add to Cart
+
+</button>
+
+</div>
+
+
+
+
+
+</div>
+
+</main>
+
+
+
+<!-- FOOTER -->
+
+<!-- FOOTER -->
+
+<footer class="bg-slate-900 text-slate-400 py-10 mt-auto">
+
+<div class="container mx-auto px-4 text-center">
+
+<img src="/images/logo1.png" style="height:40px;border-radius:50%;margin:auto;margin-bottom:10px;">
+
+<p class="font-semibold text-white text-lg">FabriTech</p>
+
+<p class="mt-2">Premium Fabrication & Industrial Solutions</p>
+
+<p class="text-sm mt-3">© 2026 FabriTech. All rights reserved.</p>
+
+</div>
+
+</footer>
+
+
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script>
+
+
+
+<!-- NAVBAR SCROLL BEHAVIOR -->
+
+<script>
+
+let lastScrollTop = 0;
+
+const header = document.querySelector('header');
+
+window.addEventListener('scroll', function() {
+
+  let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+  if (currentScroll > lastScrollTop) {
+
+    // Scrolling DOWN - hide navbar
+
+    header.classList.add('hide-nav');
+
+  } else {
+
+    // Scrolling UP - show navbar
+
+    header.classList.remove('hide-nav');
+
+  }
+
+  lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+
+});
+
+</script>
+
+
+
+<!-- FLYING CART ANIMATION -->
+
+<script>
+
+function flyToCart(event,productName){
+
+addToCart(productName);
+
+const button=event.target;
+
+const card=button.closest("div");
+
+const img=card.querySelector(".product-image");
+
+const cart=document.getElementById("cart-icon");
+
+const imgRect=img.getBoundingClientRect();
+
+const cartRect=cart.getBoundingClientRect();
+
+const flyingImg=img.cloneNode(true);
+
+flyingImg.style.position="fixed";
+
+flyingImg.style.left=imgRect.left+"px";
+
+flyingImg.style.top=imgRect.top+"px";
+
+flyingImg.style.width=imgRect.width+"px";
+
+flyingImg.style.height=imgRect.height+"px";
+
+flyingImg.style.transition="all .8s ease-in-out";
+
+flyingImg.style.zIndex="1000";
+
+document.body.appendChild(flyingImg);
+
+setTimeout(()=>{
+
+flyingImg.style.left=cartRect.left+"px";
+
+flyingImg.style.top=cartRect.top+"px";
+
+flyingImg.style.width="40px";
+
+flyingImg.style.height="40px";
+
+flyingImg.style.opacity="0.5";
+
+},10);
+
+setTimeout(()=>{
+
+flyingImg.remove();
+
+},900);
+
+}
+
+</script>
+
+
+</body>
+</html>

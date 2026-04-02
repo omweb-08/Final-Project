@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>FabriTech Cart</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+
+body{
+background:linear-gradient(135deg,#021451,#021451,#021451);
+font-family:Arial, Helvetica, sans-serif;
+}
+
+/* CARD ANIMATION */
+
+.fadeIn{
+animation:fadeIn .6s ease forwards;
+}
+
+@keyframes fadeIn{
+from{opacity:0; transform:translateY(20px);}
+to{opacity:1; transform:translateY(0);}
+}
+
+/* FLOAT ANIMATION */
+
+.float{
+animation:float 3s ease-in-out infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(0px);}
+50%{transform:translateY(-8px);}
+100%{transform:translateY(0px);}
+}
+
+/* CARD HOVER EFFECT */
+
+.cardHover{
+transition:all .35s ease;
+}
+
+.cardHover:hover{
+transform:translateY(-6px) scale(1.02);
+box-shadow:0 20px 40px rgba(0,0,0,0.2);
+}
+
+/* BUTTON GLOW */
+
+.btnGlow{
+transition:all .3s ease;
+}
+
+.btnGlow:hover{
+transform:scale(1.07);
+box-shadow:0 10px 25px rgba(0,0,0,0.25);
+}
+
+/* TOAST */
+
+.toast{
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-60%);
+background:linear-gradient(45deg,#16a34a,#22c55e);
+color:white;
+padding:18px 30px;
+border-radius:12px;
+font-size:18px;
+font-weight:600;
+box-shadow:0 20px 40px rgba(0,0,0,0.25);
+opacity:0;
+transition:all .4s;
+z-index:2000;
+}
+
+.toast.show{
+opacity:1;
+transform:translate(-50%,-50%) scale(1.08);
+}
+
+/* INPUT STYLE */
+
+.input{
+border:1px solid #ddd;
+padding:12px;
+width:100%;
+border-radius:10px;
+transition:all .25s;
+background:#f9fafb;
+}
+
+.input:focus{
+outline:none;
+border-color:#2563eb;
+background:white;
+box-shadow:0 0 0 3px rgba(37,99,235,.25);
+}
+
+/* BUTTON PRESS EFFECT */
+
+button:active{
+transform:scale(.95);
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<header class="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white shadow-xl p-4 flex justify-between items-center">
+
+<h1 class="text-2xl font-bold tracking-wide float">FabriTech Cart :-</h1>
+
+<a href="products.html"
+class="bg-white text-blue-600 px-4 py-2 rounded-lg font-semibold btnGlow transition">
+Continue Shopping
+</a>
+
+</header>
+
+<!-- CART SECTION -->
+
+<div class="flex justify-center items-center py-12">
+
+<div class="w-full max-w-2xl text-center">
+
+<img src="/images/logo1.png"
+class="mx-auto mb-4 w-20 animate-pulse float">
+
+<h2 class="text-3xl font-bold mb-2 text-white drop-shadow-lg">
+Your Shopping Cart
+</h2>
+
+<p id="totalItems" class="text-gray-600 mb-8 text-lg"></p>
+
+<div id="cartItems"
+class="flex flex-col gap-6"></div>
+
+<button onclick="clearCart()"
+class="mt-8 bg-gradient-to-r from-red-500 to-red-600 text-white px-6 py-2 rounded-lg btnGlow transition shadow">
+Clear Cart
+</button>
+
+</div>
+
+</div>
+
+<!-- CUSTOMER DETAILS -->
+
+<div class="container mx-auto px-4 pb-20">
+
+<h2 class="text-2xl font-bold mb-6 text-center text-white drop-shadow-lg">
+Customer Details
+</h2>
+
+<div class="bg-white p-8 rounded-xl shadow-xl max-w-md mx-auto cardHover transition">
+
+<input id="name" placeholder="Your Name"
+class="input mb-4">
+
+<input id="email" placeholder="Gmail Address"
+class="input mb-4">
+
+<input id="phone" placeholder="Phone Number"
+class="input mb-6">
+
+<button onclick="placeOrder()"
+class="bg-gradient-to-r from-green-500 to-green-700 text-white px-4 py-3 rounded-lg w-full font-semibold btnGlow transition shadow">
+Place Order
+</button>
+
+</div>
+
+</div>
+
+
+<!-- SUCCESS TOAST -->
+
+<div id="toast" class="toast">
+Order placed successfully 🎉
+</div>
+
+
+<script>
+
+function loadCart(){
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+const container = document.getElementById("cartItems");
+const totalItems = document.getElementById("totalItems");
+
+container.innerHTML="";
+
+if(cart.length===0){
+
+container.innerHTML=
+'<p class="text-white text-lg fadeIn col-span-full text-center drop-shadow-lg">Your cart is empty</p>';
+
+totalItems.innerText="";
+return;
+
+}
+
+let count=0;
+
+cart.forEach((item,index)=>{
+
+count+=item.quantity;
+
+container.innerHTML+=
+'<div class="bg-white p-6 rounded-xl shadow cardHover transition fadeIn">'+
+
+'<h3 class="text-lg font-bold mb-4">'+item.name+'</h3>'+
+
+'<div class="flex items-center justify-center gap-4">'+
+
+'<button onclick="decreaseQty('+index+')" class="bg-red-500 text-white px-3 py-1 rounded-lg btnGlow hover:bg-red-600">-</button>'+
+
+'<span class="font-bold text-lg">'+item.quantity+'</span>'+
+
+'<button onclick="increaseQty('+index+')" class="bg-green-500 text-white px-3 py-1 rounded-lg btnGlow hover:bg-green-600">+</button>'+
+
+'</div></div>';
+
+});
+
+totalItems.innerText="Total Items in Cart: "+count;
+
+}
+
+
+function increaseQty(index){
+
+let cart=JSON.parse(localStorage.getItem("cart"))||[];
+
+cart[index].quantity++;
+
+localStorage.setItem("cart",JSON.stringify(cart));
+
+loadCart();
+
+}
+
+
+function decreaseQty(index){
+
+let cart=JSON.parse(localStorage.getItem("cart"))||[];
+
+if(cart[index].quantity>1){
+cart[index].quantity--;
+}else{
+cart.splice(index,1);
+}
+
+localStorage.setItem("cart",JSON.stringify(cart));
+
+loadCart();
+
+}
+
+
+function clearCart(){
+
+localStorage.removeItem("cart");
+
+loadCart();
+
+}
+
+
+async function placeOrder(){
+
+const cart=JSON.parse(localStorage.getItem("cart"))||[];
+
+if(cart.length===0){
+alert("Cart empty");
+return;
+}
+
+const name=document.getElementById("name").value.trim();
+const email=document.getElementById("email").value.trim();
+const phone=document.getElementById("phone").value.trim();
+
+if(name.length<3){
+alert("Name must be at least 3 characters");
+return;
+}
+
+if(!/^[0-9]{10}$/.test(phone)){
+alert("Phone number must be exactly 10 digits");
+return;
+}
+
+if(!/^[a-zA-Z0-9._%+-]{3,}@gmail\.com$/.test(email)){
+alert("Email must be a valid Gmail address");
+return;
+}
+
+try{
+
+await fetch("/api/order",{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+items:cart,
+customerName:name,
+customerEmail:email,
+customerPhone:phone
+})
+});
+
+const toast=document.getElementById("toast");
+
+toast.classList.add("show");
+
+setTimeout(function(){
+toast.classList.remove("show");
+},2000);
+
+localStorage.removeItem("cart");
+
+loadCart();
+
+document.getElementById("name").value="";
+document.getElementById("email").value="";
+document.getElementById("phone").value="";
+
+}
+catch(err){
+
+console.error(err);
+alert("Order failed. Please try again.");
+
+}
+
+}
+
+loadCart();
+
+</script>
+
+<script src="/js/search.js"></script>
+
+</body>
+</html>

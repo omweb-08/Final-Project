@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "name": "fabritech-website",
   "version": "1.0.0",
@@ -23,3 +24,30 @@
     "nodemon": "^3.1.11"
   }
 }
+=======
+{
+  "name": "fabritech-website",
+  "version": "1.0.0",
+  "description": "FabriTech - Fabrication & Shutters website with admin and email notifications",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "author": "FabriTech",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
+    "express": "^4.21.2",
+    "express-session": "^1.18.2",
+    "mongoose": "^7.8.7",
+    "nodemailer": "^7.0.13",
+    "twilio": "^5.12.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
+}
+>>>>>>> 39c692554a94d350fb9c88f7329adaf25182f969

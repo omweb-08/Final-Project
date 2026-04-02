@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FabriTech — Premium Fabrication & Shutters</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+body{
+font-family:'Inter',sans-serif;
+scroll-behavior:smooth;
+background:#f8fafc;
+}
+
+/* NAVBAR */
+
+.glass-nav{
+background:rgba(255,255,255,0.96);
+backdrop-filter:blur(12px);
+border-bottom:1px solid #e2e8f0;
+}
+
+/* HERO */
+
+.hero-section{
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
+}
+
+/* HERO TEXT ANIMATION */
+
+.hero-section h2{
+animation:fadeUp 1s ease forwards;
+}
+
+.hero-section p{
+animation:fadeUp 1.3s ease forwards;
+}
+
+@keyframes fadeUp{
+from{opacity:0;transform:translateY(40px);}
+to{opacity:1;transform:translateY(0);}
+}
+
+/* GRADIENT TEXT ANIMATION */
+
+@keyframes gradientMove{
+0%{background-position:0%}
+100%{background-position:200%}
+}
+
+.animate-gradient{
+background-size:200% auto;
+animation:gradientMove 4s linear infinite;
+}
+
+/* BUTTON EFFECT */
+
+.hero-btn{
+transition:all .3s ease;
+box-shadow:0 10px 25px rgba(0,0,0,.25);
+}
+
+.hero-btn:hover{
+transform:translateY(-4px) scale(1.05);
+}
+
+/* FEATURE CARDS */
+
+.feature-card{
+transition:all .35s ease;
+border-radius:18px;
+}
+
+.feature-card:hover{
+transform:translateY(-10px);
+box-shadow:0 25px 45px rgba(0,0,0,.15);
+}
+
+/* ICON STYLE */
+
+.feature-icon{
+width:70px;
+height:70px;
+border-radius:20px;
+display:flex;
+align-items:center;
+justify-content:center;
+margin:auto;
+margin-bottom:18px;
+font-size:24px;
+box-shadow:0 10px 20px rgba(0,0,0,.15);
+}
+
+/* MAP GRADIENT BACKGROUND */
+
+.map-gradient{
+background:linear-gradient(135deg,#1e3a8a,#1e40af,#1d4ed8,#2563eb);
+}
+
+</style>
+</head>
+
+<body class="bg-slate-50 text-slate-900 flex flex-col min-h-screen">
+
+<div class="bg-blue-700 text-white py-2 text-xs font-bold uppercase tracking-widest overflow-hidden whitespace-nowrap sticky top-0 z-[60]">
+
+<div class="marquee">
+  <div class="marquee-content">
+    FabriTech: Heavy Duty Motorized & Manual Shutters 
+    📞 9373632848 | 📞 9860997372 | Quality Fabrication Across Maharashtra
+  </div>
+</div>
+
+<style>
+.marquee {
+  width: 100%;
+  overflow: hidden;
+  background: #1409aa;
+  color: #fff;
+}
+
+.marquee-content {
+  display: inline-block;
+  white-space: nowrap;
+  animation: scroll 10s linear infinite;
+}
+
+@keyframes scroll {
+  from { transform: translateX(100%); }
+  to { transform: translateX(-100%); }
+}
+</style>
+
+</div>      
+
+<header class="glass-nav sticky top-[32px] z-50">
+
+<div class="container mx-auto px-4 py-3 flex items-center justify-between">
+
+<div class="flex items-center gap-4">
+
+<a href="index.html" class="flex items-center gap-3">
+
+<img src="/images/logo1.png" style="height:40px;border-radius:50%;" alt="logo">
+
+<h1 class="text-xl font-bold tracking-tight text-slate-900">
+FabriTech
+</h1>
+
+</a>
+
+<div class="relative w-56 hidden md:block">
+
+<input
+type="text"
+id="searchInput"
+placeholder="Search..."
+class="border px-3 py-2 rounded w-full text-sm focus:ring-2 focus:ring-blue-500"
+onkeyup="showSuggestions()">
+
+<ul id="suggestions"
+class="absolute bg-white border w-full mt-1 rounded shadow hidden text-sm"></ul>
+
+</div>
+
+</div>
+
+<nav class="hidden md:flex items-center gap-8 font-semibold text-sm">
+
+<a href="index.html" class="text-blue-600 border-b-2 border-blue-600 pb-1">Home</a>
+
+<a href="services.html" class="text-slate-600 hover:text-blue-600">Services</a>
+
+<a href="Products.html" class="text-slate-600 hover:text-blue-600">Products</a>
+
+<a href="Cart.html" class="text-slate-600 hover:text-blue-600">🛒Cart</a>
+
+
+<a href="about.html" class="text-slate-600 hover:text-blue-600">About</a>
+
+<a href="contact.html" class="text-slate-600 hover:text-blue-600">Contact</a>
+
+<a href="admin.html" class="text-slate-600 hover:text-blue-600">Admin</a>
+
+<a href="customer.html" class="text-slate-600 hover:text-blue-600">Customer</a>
+
+
+
+</nav>
+
+<div class="md:hidden">
+<i class="fa-solid fa-bars text-xl"></i>
+</div>
+
+</div>
+
+</header>
+
+
+<section class="hero-section min-h-[90vh] flex items-center text-white relative overflow-hidden">
+
+<video autoplay muted loop playsinline
+class="absolute top-0 left-0 w-full h-full object-cover z-0">
+
+<source src="/videos/wel3.mp4" type="video/mp4">
+
+</video>
+
+<div class="absolute top-0 left-0 w-full h-full bg-slate-950/70 z-10"></div>
+
+<!-- glowing background blobs -->
+
+<div class="absolute -top-40 -left-40 w-[500px] h-[500px] bg-blue-500 opacity-30 blur-[140px] rounded-full"></div>
+
+<div class="absolute -bottom-40 -right-40 w-[500px] h-[500px] bg-cyan-400 opacity-20 blur-[140px] rounded-full"></div>
+
+<div class="container mx-auto px-4 py-20 relative z-20">
+
+<div class="max-w-3xl space-y-8">
+
+<span class="inline-block backdrop-blur-md bg-white/10 border border-white/20 text-[11px] font-semibold px-6 py-2 rounded-full uppercase tracking-widest shadow-xl">
+Professional Fabrication Workshop
+</span>
+
+<h2 class="text-5xl lg:text-7xl font-extrabold leading-tight tracking-tight">
+
+<span class="bg-gradient-to-r from-blue-200 via-white to-blue-300 bg-clip-text text-transparent animate-gradient">
+Industrial Strength
+</span>
+
+<br>
+
+<span class="bg-gradient-to-r from-blue-300 via-blue-400 to-blue-500 bg-clip-text text-transparent drop-shadow-[0_0_30px_rgba(59,130,246,0.7)]">
+Metal Works
+</span>
+
+</h2>
+
+<p class="text-lg lg:text-xl text-blue-100 max-w-2xl leading-relaxed">
+Leading manufacturers of automated rolling shutters, safety doors, and custom metal structures in Maharashtra.
+</p>
+
+<div class="flex flex-col sm:flex-row gap-5 pt-4">
+
+<a href="contact.html"
+class="hero-btn px-8 py-4 bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl font-semibold shadow-lg hover:shadow-blue-500/40">
+Get Quote
+</a>
+
+<a href="Products.html"
+class="hero-btn px-8 py-4 backdrop-blur-md bg-white/10 border border-white/20 rounded-xl font-semibold hover:bg-white/20">
+View Products
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section class="py-24 map-gradient text-white">
+
+<div class="container mx-auto px-4 text-center">
+
+<h2 class="text-4xl font-bold mb-6 sparkle">
+Find Route To Our Workshop ✦
+</h2>
+
+<p class="text-blue-100 mb-10 text-lg leading-relaxed">
+Tap on the map to start navigation to our 
+<span class="font-semibold text-white">workshop in Pandharpur</span>.
+</p>
+
+<style>
+
+/* SPARKLE HEADING */
+
+.sparkle{
+background:linear-gradient(90deg,#93c5fd,#ffffff,#60a5fa);
+background-size:200%;
+background-clip:text;
+-webkit-background-clip:text;
+color:transparent;
+-webkit-text-fill-color:transparent;
+animation:shine 5s linear infinite;
+}
+
+@keyframes shine{
+0%{background-position:0%}
+100%{background-position:200%}
+}
+
+</style>
+
+<div class="relative max-w-4xl mx-auto rounded-xl overflow-hidden shadow-2xl border-4 border-white">
+
+<iframe
+src="https://www.google.com/maps?q=17.6669807,75.3198649&z=16&output=embed"
+width="100%"
+height="450"
+style="border:0;"
+loading="lazy">
+</iframe>
+
+<div
+onclick="startNavigation()"
+class="absolute top-0 left-0 w-full h-full cursor-pointer">
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<footer class="bg-slate-900 text-slate-400 py-10 mt-auto">
+
+<div class="container mx-auto px-4 text-center">
+
+<img src="/images/logo1.png"
+style="height:40px;border-radius:50%;margin:auto;margin-bottom:10px;">
+
+<p class="font-semibold text-white text-lg">
+FabriTech
+</p>
+
+<p class="mt-2">
+Premium Fabrication & Industrial Solutions
+</p>
+
+<p class="text-sm mt-3">
+© 2026 FabriTech. All rights reserved.
+</p>
+
+</div>
+
+</footer>
+
+<script src="/js/search.js"></script>
+
+<script>
+
+function startNavigation(){
+
+if(navigator.geolocation){
+
+navigator.geolocation.getCurrentPosition(function(position){
+
+const userLat = position.coords.latitude;
+const userLng = position.coords.longitude;
+
+const destination =
+"Ganesh Nagar, Pundlik Nagar, Pandharpur, Maharashtra 413304";
+
+const url =
+`https://www.google.com/maps/dir/?api=1&origin=${userLat},${userLng}&destination=${destination}&travelmode=driving`;
+
+window.open(url,"_blank");
+
+});
+
+}else{
+
+alert("Location access not supported");
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
